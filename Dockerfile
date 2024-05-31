@@ -1,4 +1,4 @@
-FROM ruby:3.1-bullseye as base
+FROM ruby:3.1.5 as base
 
 RUN apt-get update -qq && apt-get install -y build-essential apt-utils libpq-dev nodejs
 
