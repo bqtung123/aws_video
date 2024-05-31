@@ -9,6 +9,14 @@ services:
       - 5432:5432
     env_file:
       - ./env/postgres.env # you can also define env variables like this.
+
+  redis:
+    image: "redis:7-alpine"
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
   rails:
     build: ./ 
     ports:
@@ -17,6 +25,8 @@ services:
       - .:/docker/app # add our local code to dockerfile
     depends_on:
       - db  # add all dependant container
+      - redis
 
 volumes:
   postgres: # named volume
+  redis:
