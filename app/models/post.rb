@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
   include PostsHelper
 
+  belongs_to :user
   validates :youtube_url, presence: true, format: { with: YOUTUBE_REGEX, message: "Invalid Youtube url" }
 
-  # after_create :notify_users
+  after_create :notify_users
   before_create :get_infor_youtube_video
 
   jsonb_accessor(:data,
@@ -12,7 +13,8 @@ class Post < ApplicationRecord
 
   def notify_users
     ActionCable.server.broadcast("notifications_channel", {
-      title: self.title
+      title: self.title,
+      author: self.user.email
     })
   end
 
