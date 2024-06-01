@@ -12,10 +12,7 @@ class Post < ApplicationRecord
   )
 
   def notify_users
-    ActionCable.server.broadcast("notifications_channel", {
-      title: self.title,
-      author: self.user.email
-    })
+    Notification::NotificationBroadcastJob.perform_async(self.title, self.user.email)
   end
 
   def get_infor_youtube_video
