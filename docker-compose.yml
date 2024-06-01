@@ -17,7 +17,7 @@ services:
     volumes:
       - redis:/data
 
-  rails:
+  app:
     build: ./ 
     ports:
       - '3000:3000'
@@ -26,6 +26,16 @@ services:
     depends_on:
       - db  # add all dependant container
       - redis
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - '.:/app'
+    depends_on:
+      - db
+      - redis
+      - app
 
 volumes:
   postgres: # named volume
