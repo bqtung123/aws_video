@@ -1,14 +1,9 @@
 <p style="color: green"><%= notice %></p>
-<%= button_to "logout", destroy_user_session_path, method: :delete  %>
-<h1>Posts</h1>
 
 <div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+    <% @posts.each do |post| %>
+      <div class="row">
+        <%= render post %>
+      </div>
+    <% end %>
 </div>
-
-<%= link_to "New post", new_post_path %>

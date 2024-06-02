@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   include PostsHelper
 
   belongs_to :user
-  validates :youtube_url, presence: true, format: { with: YOUTUBE_REGEX, message: "Invalid Youtube url" }
+  validates :youtube_url, presence: true, format: { with: YOUTUBE_REGEX }
 
   after_create :notify_users
   before_create :get_infor_youtube_video

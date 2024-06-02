@@ -1,8 +1,7 @@
+
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +10,33 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :youtube_url, style: "display: block" %>
-    <%= form.text_field :youtube_url %>
+  <div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <p><strong>Share a Youtube movie</strong></p>
+        <hr>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <%= form.label "Youtube URL:", style: "display: block", class: "p-3" %>
+      </div>
+      <div class="col">
+        <%= form.text_field :youtube_url, class: "p-3 border" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container px-4 d-flex flex-row justify-content-center align-items-center">
+    <div class="col">
+    </div>
+    <div class="row gx-5">
+      <div class="col">
+          <%= form.submit "Share", class: "btn btn-primary", style: "width: 280px !important; margin-top: 20px;"%>
+      </div>
+    </div>
   </div>
 <% end %>

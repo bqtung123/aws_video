@@ -1,9 +1,8 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-    <strong>Youtube:</strong>
-    <%= post.get_frame %>
-  </p>
 
+<div class="col">
+ <%= post.get_frame %>
+</div>
+<div class="col">
+  <div style="color: red;"><strong><%= post.title %></strong></div>
+  <div>Shared by: <%= post.user.email %></div>
 </div>
